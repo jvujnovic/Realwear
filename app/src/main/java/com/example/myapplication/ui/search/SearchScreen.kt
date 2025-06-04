@@ -78,7 +78,7 @@ private fun SearchResults(modifier: Modifier = Modifier, users: List<User>) {
         items(users, key = { user ->
             user.id
         }) { user ->
-            Text(text = "${user.name} ${user.surname}")
+            Text(text = "${user.name}")
         }
     }
 }

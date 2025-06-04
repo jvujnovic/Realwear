@@ -2,6 +2,10 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    kotlin("plugin.serialization") version "1.9.0" // or your Kotlin version
+
+
+
 }
 
 android {
@@ -56,4 +60,20 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.plugins)
+
+
+    // Choose your engine: e.g., CIO (good default), OkHttp, or Darwin for iOS
+    implementation(libs.ktor.client.cio)
+
+    // Serialization (JSON)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
+
+    implementation(libs.kotlinx.serialization.json) // or the latest
+
+    // If you’re using Ktor’s JSON plugin, you might also already have this:
+    implementation(libs.ktor.serialization.kotlinx.json)
 }

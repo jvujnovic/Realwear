@@ -59,7 +59,7 @@ class Mock {
                 return@update Resource.Success(users)
             } else {
                 Resource.Success(users.filter {
-                    val nameAndSurname = "${it.name} ${it.surname}"
+                    val nameAndSurname = "${it.name}"
                     nameAndSurname.contains(
                         query,
                         ignoreCase = true
