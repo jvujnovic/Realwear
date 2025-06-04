@@ -61,19 +61,22 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    // KTOR
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.plugins)
-
-
     // Choose your engine: e.g., CIO (good default), OkHttp, or Darwin for iOS
     implementation(libs.ktor.client.cio)
-
     // Serialization (JSON)
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
-
     implementation(libs.kotlinx.serialization.json) // or the latest
-
     // If you’re using Ktor’s JSON plugin, you might also already have this:
     implementation(libs.ktor.serialization.kotlinx.json)
+
+    //COIL
+    implementation(libs.coil)
+    implementation(libs.coil.svg) // optional
+    implementation(libs.coil.gif) // optional
+    implementation(libs.coil.compose)
+
 }

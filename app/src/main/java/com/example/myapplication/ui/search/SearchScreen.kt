@@ -2,9 +2,11 @@ package com.example.myapplication.ui.search
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -20,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import coil.compose.AsyncImage
 import com.example.myapplication.data.model.search.User
 
 
@@ -78,8 +81,22 @@ private fun SearchResults(modifier: Modifier = Modifier, users: List<User>) {
         items(users, key = { user ->
             user.id
         }) { user ->
-            Text(text = "${user.name}")
+            UserItem(modifier = Modifier.padding(10.dp), user = user)
         }
+    }
+}
+
+@Composable
+private fun UserItem(modifier: Modifier = Modifier, user: User) {
+
+    Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
+        AsyncImage(
+            modifier = Modifier.size(40.dp).padding(10.dp),
+            model = user.avatarUrl,
+            contentDescription = "Image of ${user.name}"
+        )
+        Text(text = user.name)
+
     }
 }
 

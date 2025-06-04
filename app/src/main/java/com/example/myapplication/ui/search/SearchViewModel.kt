@@ -7,6 +7,7 @@ import com.example.myapplication.data.model.Resource
 import com.example.myapplication.data.model.search.User
 import com.example.myapplication.data.repository.network.UserSearchRepository
 import com.example.myapplication.data.repository.network.UserUserSearchRepositoryImpl
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,6 +15,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SearchViewModel(private val repository: UserSearchRepository = UserUserSearchRepositoryImpl()) :
     ViewModel() {
@@ -70,7 +72,9 @@ class SearchViewModel(private val repository: UserSearchRepository = UserUserSea
             _uiState.update { state ->
                 state.copy(isLoading = true)
             }
-            repository.search(query)
+            withContext(Dispatchers.IO) {
+                repository.search(query)
+            }
         }
     }
 
